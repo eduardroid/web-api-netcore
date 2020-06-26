@@ -7,9 +7,11 @@ on:
     branches: [ master ]
 
 jobs:
+  
   build:
-
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./dev.eduardroid.services/dev.eduardroid.services
 
     steps:
     - uses: actions/checkout@v2
@@ -18,11 +20,12 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Install dependencies
-      working-directory: ..\dev.eduardroid.services\dev.eduardroid.services\
       run: dotnet restore 
+      working-directory: ${{env.working-directory}}
     - name: Build
-      working-directory: ..\dev.eduardroid.services\dev.eduardroid.services\
       run: dotnet build --configuration Release --no-restore 
+      working-directory: ${{env.working-directory}}
     - name: Test
-      working-directory: ..\dev.eduardroid.services\dev.eduardroid.services\
       run: dotnet test --no-restore --verbosity normal 
+      working-directory: ${{env.working-directory}}
+      
