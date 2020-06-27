@@ -18,11 +18,11 @@ jobs:
         dotnet-version: 3.1.101
     - name: Install dependencies
       run: dotnet restore 
-      working-directory: ./dev.eduardroid.services/dev.eduardroid.services
+      working-directory: ./dev.eduardroid.services
     - name: Build
       run: dotnet build --configuration Release --no-restore 
-      working-directory: ./dev.eduardroid.services/dev.eduardroid.services
+      working-directory: ./dev.eduardroid.services
     - name: Test
       run: dotnet test --no-restore --verbosity normal 
-      working-directory: ./dev.eduardroid.services/dev.eduardroid.services
+      working-directory: ./dev.eduardroid.services
       

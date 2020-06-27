@@ -6,3 +6,9 @@ docker run -d -p 8080:80 --name eduardroid-service eduardroid-service:latest
 
 #try to run it with volumes
 docker run -d -p 8080:80 -v ~/dev.eduardroid.services:/app/ -w /app/ --name eduardroid-service eduardroid-service:latest
+
+#to pull msssql for linux
+docker pull mcr.microsoft.com/mssql/server
+
+#Start a mssql-server instance running as the SQL Express edition
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=C._p7,ZF^'gZ.Uk)" -e "MSSQL_PID=Express"  -p 1433:1433 --name SqlServerExpress -v D:\Eduardo\Projects\DBDockerVolume:/var/opt/mssql/data -d mcr.microsoft.com/mssql/server:latest
