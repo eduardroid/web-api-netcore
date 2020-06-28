@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using dev.eduardroid.services.Data;
@@ -11,7 +12,7 @@ namespace dev.eduardroid.services.Controller
 {
     [Route("api/[Controller]")]
     [ApiController]
-    [Produces("application/json")]
+    //[Produces("application/json")]
     public class UsersController : ControllerBase
     {
         private readonly IServiceRepository _repository;
@@ -34,7 +35,7 @@ namespace dev.eduardroid.services.Controller
         {
             try
             {
-                return Ok(_repository.GetAllUsers());
+                return Ok(_mapper.Map<IEnumerable<User>, IEnumerable<UserViewModel>>(_repository.GetAllUsers()));
             }
             catch (Exception ex)
             {
@@ -68,22 +69,26 @@ namespace dev.eduardroid.services.Controller
         }
 
         [HttpPost]
-        [ProducesResponseType(201)]
-        [ProducesResponseType(400)]
+        //[ProducesResponseType(201)]
+        //[ProducesResponseType(400)]
         public IActionResult Post([FromBody]UserViewModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _repository.AddEntity(model);
+                    var newUser = _mapper.Map<UserViewModel, User>(model);
+
+                    _repository.AddEntity(newUser);
+
                     if (_repository.SaveAll())
-                        return Created($"/api/orders/{model.UserId}", model);
+                        return Created($"/api/orders/{newUser.Id}", _mapper.Map<User, UserViewModel>(newUser));
                     else
                         return BadRequest("Failed to save user");
                 }
-                else { 
-                        return BadRequest(ModelState);
+                else
+                {
+                    return BadRequest(ModelState);
                 }
             }
             catch (Exception ex)
