@@ -18,5 +18,7 @@ namespace dev.eduardroid.services.ViewModel
         [Required]
         [MinLength(8)]
         public String UserPassword { get; set; }
+        public ICollection<NavigationRightViewModel> UserRights { get; set; }
+
     }
 }

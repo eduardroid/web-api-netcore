@@ -52,7 +52,8 @@ namespace dev.eduardroid.services.Data
                 _logger.LogInformation(ex.Message);
                 return null;
             }
-}
+        }
+
 
         public bool SaveAll()
         {

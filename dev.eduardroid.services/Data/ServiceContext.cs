@@ -1,4 +1,5 @@
 ﻿using dev.eduardroid.services.Data.Entities;
+//using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace dev.eduardroid.services.Data
 {
-    public class ServiceContext : DbContext 
+    public class ServiceContext : DbContext//IdentityDbContext<User> 
     {
         public DbSet<User> Users { get; set; }
         // public DbSet<NavigationRight> NavigationRights { get; set; }
@@ -18,19 +19,19 @@ namespace dev.eduardroid.services.Data
 
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<User>()
-                .HasData(
-                    new User() { 
-                        Id=1,
-                        Nickname="eduardroid",
-                        Email="edelcastillo@eduardroid.tech",
-                        Password="123456"
-                    }
-                );
-        }
+        //    modelBuilder.Entity<User>()
+        //        .HasData(
+        //            new User() { 
+        //                Id=1,
+        //                Nickname="eduardroid",
+        //                Email="edelcastillo@eduardroid.tech",
+        //                Password="123456"
+        //            }
+        //        );
+        //}
     }
 }

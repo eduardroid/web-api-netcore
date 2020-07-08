@@ -19,6 +19,10 @@ namespace dev.eduardroid.services.Data
                 .ForMember(m => m.UserPassword , mf => mf.MapFrom(u=>u.Password))
                 .ReverseMap();
 
+            CreateMap<NavigationRight, NavigationRightViewModel>()
+                .ForMember(m => m.NavigationRightId, mf => mf.MapFrom(u => u.Id))
+                .ForMember(m => m.NavigationRightWebPage, mf => mf.MapFrom(u => u.WebPage))
+                .ReverseMap();
         }
     }
 }

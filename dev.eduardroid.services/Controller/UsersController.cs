@@ -19,7 +19,8 @@ namespace dev.eduardroid.services.Controller
         private readonly ILogger<UsersController> _logger;
         private readonly IMapper _mapper;
 
-        public UsersController(IServiceRepository repository
+        public UsersController(
+              IServiceRepository repository
             , ILogger<UsersController> logger
             , IMapper mapper)
         {
